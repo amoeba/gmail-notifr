@@ -132,16 +132,11 @@ class GNChecker < OSX::NSObject
     notifyMenuUpdate
     
     if shouldNotify && @account.growl
-      info = @messages.map { |m| "#{m[:subject]}\nFrom: #{m[:author]}" }.join("\n#{'-' * 30}\n\n")
-      if @messageCount > @messages.size
-        info += "\n\n..."
-      end
-      
-      unreadCount = @messageCount == 1 ? NSLocalizedString("Unread Message") % @messageCount :
-          NSLocalizedString("Unread Messages") % @messageCount
-      
-      notify(@account.username, [unreadCount, info].join("\n\n"))
+	  @messages.each do |message|
+		notify("#{NSLocalizedString("From")} #{message[:author]}", message[:subject])
+	  end
     end
+	
     if shouldNotify && @account.sound != GNSound::SOUND_NONE && sound = NSSound.soundNamed(@account.sound)
       sound.play
     end
