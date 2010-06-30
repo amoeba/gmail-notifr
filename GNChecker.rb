@@ -133,7 +133,8 @@ class GNChecker < OSX::NSObject
     
     if shouldNotify && @account.growl
 	  @messages.each do |message|
-		notify("#{NSLocalizedString("From")} #{message[:author]}", message[:subject])
+	    subject = message[:subject].nil? ? "No Subject" : message[:subject]
+		notify("#{NSLocalizedString("From")} #{message[:author]}", subject)
 	  end
     end
 	
