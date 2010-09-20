@@ -157,9 +157,9 @@ end
 
 require "choctop"
 
-ChocTop.new do |s|
-  s.host     = 'ashchan.com'
-  s.remote_dir = '/var/www/ashchan.com/shared/gmailnotifr'
+ChocTop::Configuration.new do |s|
+  s.host     = 'assets.ashchan.com'
+  #s.remote_dir = '/var/www/ashchan.com/shared/gmailnotifr'
 
   # Optional, showing defaults
   s.base_url   = "http://#{s.host}/gmailnotifr"
